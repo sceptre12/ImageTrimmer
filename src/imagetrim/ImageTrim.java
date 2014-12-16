@@ -14,9 +14,9 @@ public class ImageTrim {
         OpenFile temp = new OpenFile();
         temp.accessFiles();
 //        temp.listF1();
-//        temp.listF1();
+        temp.listF2();
 //        temp.TrimF1();
-        temp.TrimF2();
+        temp.TrimF22();
     }
     
 }

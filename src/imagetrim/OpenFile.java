@@ -16,8 +16,8 @@ public class OpenFile {
    private File f2;
    
    private void setPaths(){
-       String p1 = "C:\\xampp\\htdocs\\latinAmerica\\img\\latin-menu";
-       String p2 = "C:\\xampp\\htdocs\\latinAmerica\\img\\latin-extra";
+       String p1 = "/home/xthom001/public_html/latinAmerica/img/latin-menu";
+       String p2 = "/home/xthom001/public_html/latinAmerica/img/latin-extra";
        Path1 = p1;
        Path2 = p2;
    }   
@@ -47,6 +47,7 @@ public class OpenFile {
            System.out.println(st21.toString());
        }
    }
+  
    public void TrimF1(){       
        for (File st11 : st1) {
            char[] str = toLCase(st11.toString()).trim().toCharArray();
@@ -62,6 +63,45 @@ public class OpenFile {
    }
    private boolean isEmpty(File[] f){
        return f.length == 0;
+   }
+   public void TrimF22(){
+       for(int a=0; a < st2.length; a++){
+           char[] str = st2[a].toString().trim().toLowerCase().toCharArray();
+           String path=" ";
+           for(int b = 0; b <str.length; b++){
+               if(str[b] == ' '){
+                   str[b] = '_';
+               }
+               path+=str[b];
+           }           
+           if(st2[a].isDirectory()){
+               for(int c = 0; c < st2[a].listFiles().length; c++){
+                   char[] str2 = st2[a].listFiles()[c].toString().trim().toLowerCase().toCharArray();
+                   String paths = " ";
+                   for(int d =0; d < str2.length; d ++){
+                       if(str2[d] == ' '){
+                           str2[d] = '_';
+                       }
+                       paths+=str2[d];
+                   }
+                   if(st2[a].listFiles()[c].isDirectory()){
+                       for(int e = 0; e < st2[a].listFiles()[c].listFiles().length; e++){
+                           char[] str3 = st2[a].listFiles()[c].listFiles()[e].toString().trim().toLowerCase().toCharArray();
+                           String path2 = " ";
+                           for(int f = 0; f < str3.length; f++){
+                               if(str3[f] == ' '){
+                                   str3[f] = '_';
+                               }
+                               path2+=str3[f];
+                           }
+                           st2[a].listFiles()[c].listFiles()[e].renameTo(new File(path2));
+                       }
+                   }
+                   st2[a].listFiles()[c].renameTo(new File(paths));
+               }
+           }
+           st2[a].renameTo(new File(path));
+       }
    }
    public void TrimF2(){
         File[] d1 = new File[0];
