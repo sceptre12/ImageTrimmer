@@ -16,7 +16,7 @@ public class OpenFile {
    private File f2;
    
    private void setPaths(){
-       String p1 = "C:\\Users\\Dennis\\Downloads\\Latin_American_-_Pictures-2014-12-17\\Latin American - Pictures";
+       String p1 = "C:\\Users\\Dennis\\Desktop\\XavierStuff\\UnderDevelopment\\latinAmerica\\img\\venue";
        String p2 = "C:\\Users\\Dennis\\Downloads\\Latin_American_-_Pictures-2014-12-17\\Latin American - Pictures";
        Path1 = p1;
        Path2 = p2;
@@ -62,8 +62,7 @@ public class OpenFile {
            String check = parse.substring(c+1, parse.toCharArray().length).toLowerCase().replace(' ', '_');
            String mSection = parse.substring(0,c+1);
            mSection+=check; 
-           st1[a] = new File(mSection);
-           st1[a].renameTo(st1[a]);
+           st1[a].renameTo(st1[a] = new File(mSection));
            System.out.println(st1[a]);
        }
    }
