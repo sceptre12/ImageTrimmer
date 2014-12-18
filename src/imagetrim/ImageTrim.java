@@ -14,9 +14,14 @@ public class ImageTrim {
         OpenFile temp = new OpenFile();
         temp.accessFiles();
 //        temp.listF1();
-        temp.listF2();
+       temp.TrimF1();
+//        temp.listF2();
 //        temp.TrimF1();
-        temp.TrimF22();
+//        temp.TrimF22();
+//        String s = "xavier Thomas";
+//        
+//        
+//        System.out.println(s.replace(' ', '_'));
     }
     
 }
