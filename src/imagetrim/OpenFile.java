@@ -2,6 +2,7 @@ package imagetrim;
 
 
 import java.io.*;
+import java.nio.file.Files;
 
 /**
  *
@@ -16,7 +17,7 @@ public class OpenFile {
    private File f2;
    
    private void setPaths(){
-       String p1 = "/home/xthom001/public_html/latinAmerica/img/latin-menu";
+       String p1 = "C:\\Users\\Dennis\\Desktop\\XavierStuff\\UnderDevelopment\\latinAmerica\\img";
        String p2 = "/home/xthom001/public_html/latinAmerica/img/latin-extra";
        Path1 = p1;
        Path2 = p2;
@@ -28,6 +29,7 @@ public class OpenFile {
        setPaths();
             f1 = new File(Path1);
             f2 = new File(Path2);
+            
            if(f1.isDirectory()){
                st1 = new File[f1.listFiles().length];
                st1 = f1.listFiles();
@@ -39,7 +41,7 @@ public class OpenFile {
    }   
    public void listF1(){
        for (File st11 : st1) {
-           System.out.println(st11.toString());
+           System.out.println(st11);
        }
    }
    public void listF2(){
@@ -49,17 +51,36 @@ public class OpenFile {
    }
   
    public void TrimF1(){       
-       for (File st11 : st1) {
-           char[] str = toLCase(st11.toString()).trim().toCharArray();
-           String path ="";
-           for(int b = 0; b < str.length; b++){
-               if(str[b] == ' '){
-                   str[b] = '_';
-               }
-               path+=str[b];
-           }
-           st11.renameTo(new File(path));
+       for (int a = 0; a < st1.length; a++) {      
+//           char[] str = st1[a].getAbsoluteFile().toString().toLowerCase().trim().toCharArray();
+//           String path =" ";           
+//           for(int b = 0; b < str.length; b++){
+//               if(Character.valueOf(str[b]).equals(' ')){
+//                   str[b] = '_';
+//               }
+//               path+=str[b];
+//           }
+//           File temp = new File(st1[a].toString());           
+//           st1[a].renameTo(new File(path));
+//           if(st1[a].equals(temp)){
+//               System.out.println("found" + " "+ a);
+//           }
+//           else System.out.println("notfound " + " "+ a);
+           File old_file = st1[a];
+           String new_name = old_file.toString().replace(' ', '_').toLowerCase();
+           File new_file = new File(new_name);
+           old_file.renameTo(new_file);
+           
+           System.out.println("renamed file path is: "+ new_name);
        }
+   }
+   private boolean St1Contains(String s){
+       for(int a =0; a < st1.length; a++){
+           if(s.equals(st1[a].toString())){
+               return true;
+           }
+       }
+       return false;
    }
    private boolean isEmpty(File[] f){
        return f.length == 0;
